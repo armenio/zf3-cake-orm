@@ -8,7 +8,7 @@
 namespace Armenio\Cake;
 
 use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
-use Zend\Db\Adapter\AdapterInterface as DbAdapterInterface;
+use Zend\Db\Adapter as DbAdapter;
 
 return [
     'Cake' => [
@@ -79,7 +79,7 @@ return [
      *
     'db' => array(
         'adapters' => array(
-            DbAdapterInterface::class => array(
+            DbAdapter::class => array(
                 'driver' => 'Pdo_Mysql',
                 'host' => 'localhost',
                 'username' => 'username',
