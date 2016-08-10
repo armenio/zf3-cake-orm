@@ -47,7 +47,7 @@ The Cake ORM Module for Zend Framework 3
 
 	6.3. Go to my/project/directory/your/app/namespace/Model/Table/
 
-	6.4. Create the File MyModelTable.php
+	6.4. Create the File MyTable.php
 
 
 ```php
