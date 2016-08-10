@@ -5,6 +5,11 @@
  * @link http://github.com/armenio for the source repository
  */
 
+namespace Armenio\Cake;
+
+use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
+use Zend\Db\Adapter\AdapterInterface as DbAdapterInterface;
+
 return [
     'Cake' => [
         'Configure' => [
@@ -54,7 +59,7 @@ return [
      * Remover este comentário caso não tenha o zf cache configurado em outro módulo
      *
     'caches' => array(
-        'Zend\Cache' => array(
+        CacheStorageInterface::class => array(
             'adapter' => array(
                 'name' => 'filesystem',
             ),
@@ -74,7 +79,7 @@ return [
      *
     'db' => array(
         'adapters' => array(
-            'Zend\Db\Adapter' => array(
+            DbAdapterInterface::class => array(
                 'driver' => 'Pdo_Mysql',
                 'host' => 'localhost',
                 'username' => 'username',

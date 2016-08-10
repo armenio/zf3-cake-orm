@@ -11,6 +11,8 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
+use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
+use Zend\Db\Adapter\AdapterInterface as DbAdapterInterface;
 use Zend\Mvc\MvcEvent;
 
 /**
@@ -32,11 +34,11 @@ class Module
         /*
 		 * arruma a configuração do cakePHP
 		 */
-        $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches']['Zend\Cache']['options']['ttl'];
-        $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters']['Zend\Db\Adapter']['host'];
-        $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters']['Zend\Db\Adapter']['username'];
-        $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters']['Zend\Db\Adapter']['password'];
-        $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters']['Zend\Db\Adapter']['dbname'];
+        $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches'][CacheStorageInterface::class]['options']['ttl'];
+        $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][DbAdapterInterface::class]['host'];
+        $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][DbAdapterInterface::class]['username'];
+        $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][DbAdapterInterface::class]['password'];
+        $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][DbAdapterInterface::class]['dbname'];
 
         /*
          * seta o namespace padrão do Cake (App\Model)
