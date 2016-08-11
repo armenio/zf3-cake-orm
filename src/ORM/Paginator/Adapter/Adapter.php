@@ -1,7 +1,7 @@
 <?php
 namespace Armenio\Cake\ORM\Paginator\Adapter;
 
-use Armenio\Cake\ORM\Table;
+use Cake\ORM\Table;
 use Zend\Paginator\Adapter\AdapterInterface;
 
 /**
@@ -21,7 +21,7 @@ class Adapter implements AdapterInterface
     protected $params;
 
     /**
-     * Cake constructor.
+     * Adapter constructor.
      * @param Table $table
      * @param array $params
      */
