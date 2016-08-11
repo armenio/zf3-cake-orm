@@ -18,6 +18,7 @@
 		}
 	],
 	"require": {
+		"zendframework/zend-paginator": "^2.7",
 		"cakephp/orm": "3.*",
         "cakephp/cache": "3.*",
         "cakephp/log": "3.*"
