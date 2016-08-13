@@ -8,7 +8,6 @@
 namespace Armenio\Cake\ORM;
 
 use Interop\Container\ContainerInterface;
-use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -25,9 +24,7 @@ class TableRegistryServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
-        $cache = $container->get(CacheStorageInterface::class);
-
-        $tableRegistry = new TableRegistry($cache);
+        $tableRegistry = new TableRegistry();
 
         return $tableRegistry;
     }

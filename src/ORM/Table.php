@@ -11,30 +11,14 @@ use Armenio\Cake\ORM\Paginator\Adapter\Adapter as PaginatorAdapter;
 use Cake\Datasource\EntityInterface;
 use Cake\ORM\Table as CakeORMTable;
 use DateTime;
-use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
 use Zend\Paginator\Paginator as ZendPaginator;
 
 /**
  * Class Table
- * @package Standard\ORM
+ * @package Armenio\Cake\ORM
  */
 class Table extends CakeORMTable
 {
-    /**
-     * @var CacheStorageInterface
-     */
-    protected $cache;
-
-    /**
-     * @param CacheStorageInterface $cache
-     * @return $this
-     */
-    public function setCache(CacheStorageInterface $cache)
-    {
-        $this->cache = $cache;
-        return $this;
-    }
-
     /**
      * @param EntityInterface $entity
      * @param array $options
@@ -44,15 +28,16 @@ class Table extends CakeORMTable
     {
         $now = (new DateTime())->format('Y-m-d H:i:s');
 
-        $columns = $this->schema()->columns();
+        if ($entity->isNew()) {
+            if ($this->hasField('active')) {
+                $entity->active = 1;
+            }
+            if ($this->hasField('created_at')) {
+                $entity->created_at = $now;
+            }
+        }
 
-        if ($entity->isNew() && in_array('active', $columns)) {
-            $entity->active = 1;
-        }
-        if ($entity->isNew() && in_array('created_at', $columns)) {
-            $entity->created_at = $now;
-        }
-        if (in_array('updated_at', $columns)) {
+        if ($this->hasField('updated_at')) {
             $entity->updated_at = $now;
         }
 
@@ -66,11 +51,9 @@ class Table extends CakeORMTable
      */
     public function delete(EntityInterface $entity, $options = [])
     {
-        $columns = $this->schema()->columns();
-
-        if (in_array('active', $columns)) {
+        if ($this->hasField('active')) {
             $entity->active = 0;
-            if (in_array('deleted_at', $columns)) {
+            if ($this->hasField('deleted_at')) {
                 $now = (new DateTime())->format('Y-m-d H:i:s');
                 $entity->deleted_at = $now;
             }
@@ -95,9 +78,7 @@ class Table extends CakeORMTable
             $options['conditions'] = [$options['conditions']];
         }
 
-        $columns = $this->schema()->columns();
-
-        if (in_array('active', $columns)) {
+        if ($this->hasField('active')) {
             if ((!isset($options['conditions'][sprintf('%s.active', $this->alias())])) && (!isset($options['conditions']['active']))) {
                 $options['conditions'][sprintf('%s.active', $this->alias())] = 1;
             }

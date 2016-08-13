@@ -8,7 +8,6 @@
 namespace Armenio\Cake\ORM;
 
 use Cake\ORM\TableRegistry as CakeORMTableRegistry;
-use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
 
 /**
  * Class TableRegistry
@@ -17,20 +16,6 @@ use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
 class TableRegistry
 {
     /**
-     * @var CacheStorageInterface
-     */
-    protected $cache;
-
-    /**
-     * TableRegistry constructor.
-     * @param CacheStorageInterface $cache
-     */
-    public function __construct(CacheStorageInterface $cache)
-    {
-        $this->cache = $cache;
-    }
-
-    /**
      * @param $alias
      * @param array $options
      * @return \Cake\ORM\Table
@@ -38,7 +23,6 @@ class TableRegistry
     public function get($alias, array $options = [])
     {
         $table = CakeORMTableRegistry::get($alias, $options);
-        $table->setCache($this->cache);
 
         return $table;
     }
