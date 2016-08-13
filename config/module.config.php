@@ -54,7 +54,11 @@ return [
             ],
         ],
     ],
-
+    'service_manager' => [
+        'factories' => [
+            ORM\TableRegistry::class => ORM\TableRegistryServiceFactory::class,
+        ],
+    ],
     /*
      * Remover este comentário caso não tenha o zf cache configurado em outro módulo
      *
