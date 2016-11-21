@@ -44,7 +44,15 @@ class Adapter implements AdapterInterface
         $params['page'] = null;
         $params['offset'] = $offset;
 
-        return $this->table->find('all', $params)->all();
+        $finder = $this->table->find('all', $params);
+
+        if (isset($params['matching']) && !empty($params['matching'])) {
+            foreach ($params['matching'] as $assoc => $builder) {
+                $finder->matching($assoc, $builder);
+            }
+        }
+
+        return $finder->all();
     }
 
     /**
