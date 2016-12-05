@@ -61,6 +61,15 @@ class Adapter implements AdapterInterface
     public function count()
     {
         $params = $this->params;
-        return $this->table->find('all', $params)->count();
+
+        $finder = $this->table->find('all', $params);
+
+        if (isset($params['matching']) && !empty($params['matching'])) {
+            foreach ($params['matching'] as $assoc => $builder) {
+                $finder->matching($assoc, $builder);
+            }
+        }
+
+        return $finder->count();
     }
 }
