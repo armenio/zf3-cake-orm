@@ -18,6 +18,13 @@ return [
             ],
         ],
         'Cache' => [
+            '_cake_core_' => [
+                'className' => 'File',
+                'prefix' => '',
+                'path' => 'data/cakephp/cache/core/',
+                'serialize' => true,
+                'duration' => 0,
+            ],
             '_cake_model_' => [
                 'className' => 'File',
                 'prefix' => '',
