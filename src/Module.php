@@ -34,11 +34,21 @@ class Module
         /*
 		 * arruma a configuração do cakePHP
 		 */
-        $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches'][CacheStorageInterface::class]['options']['ttl'];
-        $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][DbAdapter::class]['host'];
-        $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][DbAdapter::class]['username'];
-        $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][DbAdapter::class]['password'];
-        $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][DbAdapter::class]['dbname'];
+        if (isset($config['caches'][CacheStorageInterface::class]['options']['ttl'])) {
+            $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches'][CacheStorageInterface::class]['options']['ttl'];
+        }
+        if (isset($config['db']['adapters'][DbAdapter::class]['host'])) {
+            $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][DbAdapter::class]['host'];
+        }
+        if (isset($config['db']['adapters'][DbAdapter::class]['username'])) {
+            $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][DbAdapter::class]['username'];
+        }
+        if (isset($config['db']['adapters'][DbAdapter::class]['password'])) {
+            $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][DbAdapter::class]['password'];
+        }
+        if (isset($config['db']['adapters'][DbAdapter::class]['dbname'])) {
+            $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][DbAdapter::class]['dbname'];
+        }
 
         /*
          * seta o namespace padrão do Cake (App\Model)
@@ -55,7 +65,10 @@ class Module
             if (!is_dir($cacheDir)) {
                 @mkdir($cacheDir, 0755, true);
             }
-            Cache::config($configKey, $configValue);
+
+            if (!Cache::getConfig($configKey)) {
+                Cache::setConfig($configKey, $configValue);
+            }
         }
 
         /*
@@ -66,14 +79,20 @@ class Module
             if (!is_dir($logDir)) {
                 @mkdir($logDir, 0755, true);
             }
-            Log::config($configKey, $configValue);
+
+            if (!Log::getConfig($configKey)) {
+                Log::setConfig($configKey, $configValue);
+            }
         }
 
         /*
          * setup da conexão com banco de dados no Cake
          */
         foreach ($config['Cake']['Datasources'] as $configKey => $configValue) {
-            ConnectionManager::config($configKey, $configValue);
+
+            if (!ConnectionManager::getConfig($configKey)) {
+                ConnectionManager::setConfig($configKey, $configValue);
+            }
         }
     }
 
