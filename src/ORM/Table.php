@@ -7,11 +7,9 @@
 
 namespace Armenio\Cake\ORM;
 
-use Armenio\Cake\ORM\Paginator\Adapter\Adapter as PaginatorAdapter;
 use Cake\Datasource\EntityInterface;
 use Cake\ORM\Table as CakeORMTable;
 use DateTime;
-use Zend\Paginator\Paginator as ZendPaginator;
 
 /**
  * Class Table
@@ -22,7 +20,7 @@ class Table extends CakeORMTable
     /**
      * @param EntityInterface $entity
      * @param array $options
-     * @return bool|EntityInterface|mixed
+     * @return EntityInterface|false
      */
     public function save(EntityInterface $entity, $options = [])
     {
@@ -47,7 +45,7 @@ class Table extends CakeORMTable
     /**
      * @param EntityInterface $entity
      * @param array $options
-     * @return bool|EntityInterface|mixed
+     * @return bool|EntityInterface|false|mixed
      */
     public function delete(EntityInterface $entity, $options = [])
     {
@@ -88,19 +86,10 @@ class Table extends CakeORMTable
     }
 
     /**
-     * @param array $params
-     * @param int $currentPageNumber
-     * @param int $itemCountPerPage
-     * @param int $pageRange
-     * @return ZendPaginator
+     * @return Query
      */
-    public function paginate($params = [], $currentPageNumber = 1, $itemCountPerPage = 20, $pageRange = 5)
+    public function query()
     {
-        $zendPaginator = new ZendPaginator(new PaginatorAdapter($this, $params));
-        $zendPaginator->setItemCountPerPage((int)$itemCountPerPage);
-        $zendPaginator->setPageRange((int)$pageRange);
-        $zendPaginator->setCurrentPageNumber((int)$currentPageNumber);
-
-        return $zendPaginator;
+        return new Query($this->getConnection(), $this);
     }
 }
