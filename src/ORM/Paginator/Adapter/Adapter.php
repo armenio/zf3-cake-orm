@@ -52,6 +52,12 @@ class Adapter implements AdapterInterface
             }
         }
 
+        if (isset($params['not_matching']) && !empty($params['not_matching'])) {
+            foreach ($params['not_matching'] as $assoc => $builder) {
+                $finder->notMatching($assoc, $builder);
+            }
+        }
+
         return $finder->all();
     }
 
@@ -67,6 +73,12 @@ class Adapter implements AdapterInterface
         if (isset($params['matching']) && !empty($params['matching'])) {
             foreach ($params['matching'] as $assoc => $builder) {
                 $finder->matching($assoc, $builder);
+            }
+        }
+
+        if (isset($params['not_matching']) && !empty($params['not_matching'])) {
+            foreach ($params['not_matching'] as $assoc => $builder) {
+                $finder->notMatching($assoc, $builder);
             }
         }
 
