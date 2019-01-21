@@ -52,9 +52,21 @@ class Adapter implements AdapterInterface
             }
         }
 
+        if (isset($params['inner_join']) && !empty($params['inner_join'])) {
+            foreach ($params['inner_join'] as $assoc => $builder) {
+                $finder->innerJoinWith($assoc, $builder);
+            }
+        }
+
         if (isset($params['not_matching']) && !empty($params['not_matching'])) {
             foreach ($params['not_matching'] as $assoc => $builder) {
                 $finder->notMatching($assoc, $builder);
+            }
+        }
+
+        if (isset($params['left_join']) && !empty($params['left_join'])) {
+            foreach ($params['left_join'] as $assoc => $builder) {
+                $finder->leftJoinWith($assoc, $builder);
             }
         }
 
@@ -76,9 +88,21 @@ class Adapter implements AdapterInterface
             }
         }
 
+        if (isset($params['inner_join']) && !empty($params['inner_join'])) {
+            foreach ($params['inner_join'] as $assoc => $builder) {
+                $finder->innerJoinWith($assoc, $builder);
+            }
+        }
+
         if (isset($params['not_matching']) && !empty($params['not_matching'])) {
             foreach ($params['not_matching'] as $assoc => $builder) {
                 $finder->notMatching($assoc, $builder);
+            }
+        }
+
+        if (isset($params['left_join']) && !empty($params['left_join'])) {
+            foreach ($params['left_join'] as $assoc => $builder) {
+                $finder->leftJoinWith($assoc, $builder);
             }
         }
 
