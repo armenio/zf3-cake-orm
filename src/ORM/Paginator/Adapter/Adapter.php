@@ -16,6 +16,11 @@ class Adapter implements AdapterInterface
     protected $query;
 
     /**
+     * @var int
+     */
+    protected $count;
+
+    /**
      * Adapter constructor.
      * @param Query $query
      */
@@ -39,6 +44,12 @@ class Adapter implements AdapterInterface
      */
     public function count()
     {
-        return $this->query->count();
+        if ($this->count !== null) {
+            return $this->count;
+        }
+
+        $this->count = $this->query->count();
+
+        return $this->count;
     }
 }
