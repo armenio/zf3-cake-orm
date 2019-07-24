@@ -77,8 +77,8 @@ class Table extends CakeORMTable
         }
 
         if ($this->hasField('active')) {
-            if ((!isset($options['conditions'][sprintf('%s.active', $this->alias())])) && (!isset($options['conditions']['active']))) {
-                $options['conditions'][sprintf('%s.active', $this->alias())] = 1;
+            if ((!isset($options['conditions'][sprintf('%s.active', $this->getAlias())])) && (!isset($options['conditions']['active']))) {
+                $options['conditions'][sprintf('%s.active', $this->getAlias())] = 1;
             }
         }
 
