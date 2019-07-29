@@ -89,7 +89,6 @@ class Module
          * setup da conexão com banco de dados no Cake
          */
         foreach ($config['Cake']['Datasources'] as $configKey => $configValue) {
-
             if (!ConnectionManager::getConfig($configKey)) {
                 ConnectionManager::setConfig($configKey, $configValue);
             }

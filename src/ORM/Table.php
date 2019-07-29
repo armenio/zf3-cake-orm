@@ -20,7 +20,7 @@ class Table extends CakeORMTable
     /**
      * @param EntityInterface $entity
      * @param array $options
-     * @return EntityInterface|false
+     * @return mixed
      */
     public function save(EntityInterface $entity, $options = [])
     {
@@ -45,7 +45,7 @@ class Table extends CakeORMTable
     /**
      * @param EntityInterface $entity
      * @param array $options
-     * @return bool|EntityInterface|false|mixed
+     * @return mixed
      */
     public function delete(EntityInterface $entity, $options = [])
     {
@@ -64,7 +64,7 @@ class Table extends CakeORMTable
     /**
      * @param string $type
      * @param array $options
-     * @return \Cake\ORM\Query
+     * @return mixed
      */
     public function find($type = 'all', $options = [])
     {

@@ -18,7 +18,7 @@ class TableRegistry
     /**
      * @param $alias
      * @param array $options
-     * @return \Cake\ORM\Table
+     * @return mixed
      */
     public function get($alias, array $options = [])
     {
