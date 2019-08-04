@@ -1,31 +1,31 @@
 {
-	"name": "armenio/zf3-cake-orm",
-	"description": "The Cake ORM Module for Zend Framework 3",
-	"type": "library",
-	"keywords": [
-		"framework",
-		"orm",
-		"zf3",
-		"cakephp",
-		"module"
-	],
-	"homepage": "https://github.com/armenio/zf3-cake-orm",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Rafael Armênio",
-			"email": "rafael.armenio@gmail.com"
-		}
-	],
-	"require": {
-		"zendframework/zend-paginator": "^2.7",
-		"cakephp/orm": "3.*",
-        "cakephp/cache": "3.*",
-        "cakephp/log": "3.*"
-	},
-    "autoload": {
-        "psr-4": {
-            "Armenio\\Cake\\": "src/"
-        }
+  "name": "armenio/zf3-cake-orm",
+  "description": "The Cake ORM Module for Zend Framework 3",
+  "type": "library",
+  "keywords": [
+    "framework",
+    "orm",
+    "zf3",
+    "cakephp",
+    "module"
+  ],
+  "homepage": "https://github.com/armenio/zf3-cake-orm",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rafael Armênio",
+      "email": "rafael.armenio@gmail.com"
     }
+  ],
+  "require": {
+    "zendframework/zend-paginator": "^2.7",
+    "cakephp/orm": "3.*",
+    "cakephp/cache": "3.*",
+    "cakephp/log": "3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Armenio\\Cake\\": "src/"
+    }
+  }
 }
