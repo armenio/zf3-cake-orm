@@ -43,7 +43,7 @@ The Cake ORM Module for Zend Framework 3
 	
 	6.1. Go to my/project/directory/your/app/namespace
 
-	6.2. Create a directory Model/Table/
+	6.2. Create directory Model/Table/
 
 	6.3. Go to my/project/directory/your/app/namespace/Model/Table/
 
@@ -54,9 +54,9 @@ The Cake ORM Module for Zend Framework 3
 <?php
 namespace Application\Model\Table;
 
-use Cake\ORM\Table as CakeORMTable;
+use Armenio\Cake\ORM\Table;
 
-class MyTable extends CakeORMTable
+class MyTable extends Table
 {
 	// ...
 }
@@ -68,11 +68,15 @@ See more here: http://book.cakephp.org/3.0/en/orm.html
 
 ```php
 <?php
-use Cake\ORM\TableManager;
-$table = TableManager::get('MyTable');
-$all = $table->find('all');
+use Armenio\Cake\ORM\TableManager;
 
-foreach ($all as $row) {
-	// ...
+$tableManager = new TableManager()
+
+$table = $tableManager->get('MyTable');
+
+$items = $table->find('all')->all();
+
+foreach ($items as $row) {
+	var_dump($row);
 }
 ```
