@@ -68,8 +68,8 @@ See more here: http://book.cakephp.org/3.0/en/orm.html
 
 ```php
 <?php
-use Cake\ORM\TableRegistry;
-$table = TableRegistry::get('MyTable');
+use Cake\ORM\TableManager;
+$table = TableManager::get('MyTable');
 $all = $table->find('all');
 
 foreach ($all as $row) {

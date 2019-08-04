@@ -7,13 +7,13 @@
 
 namespace Armenio\Cake\ORM;
 
-use Cake\ORM\TableRegistry as CakeORMTableRegistry;
+use Cake\ORM\TableRegistry;
 
 /**
- * Class TableRegistry
+ * Class TableManager
  * @package Armenio\Cake\ORM
  */
-class TableRegistry
+class TableManager
 {
     /**
      * @param $alias
@@ -22,7 +22,7 @@ class TableRegistry
      */
     public function get($alias, array $options = [])
     {
-        $table = CakeORMTableRegistry::get($alias, $options);
+        $table = TableRegistry::getTableLocator()->get($alias, $options);
 
         return $table;
     }

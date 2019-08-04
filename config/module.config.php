@@ -63,7 +63,7 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            ORM\TableRegistry::class => ORM\TableRegistryServiceFactory::class,
+            ORM\TableManager::class => ORM\TableManagerServiceFactory::class,
         ],
     ],
     /*

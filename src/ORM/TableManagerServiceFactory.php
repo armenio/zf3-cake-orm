@@ -11,21 +11,21 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class TableRegistryServiceFactory
+ * Class TableManagerServiceFactory
  * @package Armenio\Cake\ORM
  */
-class TableRegistryServiceFactory implements FactoryInterface
+class TableManagerServiceFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $name
      * @param array|null $options
-     * @return TableRegistry
+     * @return TableManager
      */
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
-        $tableRegistry = new TableRegistry();
+        $tableManager = new TableManager();
 
-        return $tableRegistry;
+        return $tableManager;
     }
 }
