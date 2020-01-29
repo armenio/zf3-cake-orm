@@ -1,14 +1,14 @@
 <?php
 /**
- * Rafael Armenio <rafael.armenio@gmail.com>
+ * @author Rafael Armenio <rafael.armenio@gmail.com>
  *
- * @link http://github.com/armenio for the source repository
+ * @link http://github.com/armenio
  */
 
 namespace Armenio\Cake;
 
-use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
-use Zend\Db\Adapter as DbAdapter;
+//use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
+//use Zend\Db\Adapter as ZendDbAdapter;
 
 return [
     'Cake' => [
@@ -90,7 +90,7 @@ return [
      *
     'db' => array(
         'adapters' => array(
-            DbAdapter::class => array(
+            ZendDbAdapter::class => array(
                 'driver' => 'Pdo_Mysql',
                 'host' => 'localhost',
                 'username' => 'username',
