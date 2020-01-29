@@ -12,7 +12,7 @@ use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
 use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
-use Zend\Db\Adapter as DbAdapter;
+use Zend\Db\Adapter as ZendDbAdapter;
 use Zend\Mvc\MvcEvent;
 
 /**
@@ -37,17 +37,17 @@ class Module
         if (isset($config['caches'][CacheStorageInterface::class]['options']['ttl'])) {
             $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches'][CacheStorageInterface::class]['options']['ttl'];
         }
-        if (isset($config['db']['adapters'][DbAdapter::class]['host'])) {
-            $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][DbAdapter::class]['host'];
+        if (isset($config['db']['adapters'][ZendDbAdapter::class]['host'])) {
+            $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][ZendDbAdapter::class]['host'];
         }
-        if (isset($config['db']['adapters'][DbAdapter::class]['username'])) {
-            $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][DbAdapter::class]['username'];
+        if (isset($config['db']['adapters'][ZendDbAdapter::class]['username'])) {
+            $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][ZendDbAdapter::class]['username'];
         }
-        if (isset($config['db']['adapters'][DbAdapter::class]['password'])) {
-            $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][DbAdapter::class]['password'];
+        if (isset($config['db']['adapters'][ZendDbAdapter::class]['password'])) {
+            $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][ZendDbAdapter::class]['password'];
         }
-        if (isset($config['db']['adapters'][DbAdapter::class]['dbname'])) {
-            $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][DbAdapter::class]['dbname'];
+        if (isset($config['db']['adapters'][ZendDbAdapter::class]['dbname'])) {
+            $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][ZendDbAdapter::class]['dbname'];
         }
 
         /*
@@ -61,7 +61,7 @@ class Module
          * configura o cache do Cake
          */
         foreach ($config['Cake']['Cache'] as $configKey => $configValue) {
-            $cacheDir = ROOT_PATH . '/' . $configValue['path'];
+            $cacheDir = ROOT_PATH . DIRECTORY_SEPARATOR . $configValue['path'];
             if (!is_dir($cacheDir)) {
                 @mkdir($cacheDir, 0755, true);
             }
@@ -75,7 +75,7 @@ class Module
          * configura o log do Cake
          */
         foreach ($config['Cake']['Log'] as $configKey => $configValue) {
-            $logDir = ROOT_PATH . '/' . $configValue['path'];
+            $logDir = ROOT_PATH . DIRECTORY_SEPARATOR . $configValue['path'];
             if (!is_dir($logDir)) {
                 @mkdir($logDir, 0755, true);
             }
