@@ -27,38 +27,39 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         /*
-		 * pega as configurações do módulo
+		 * Configurações do módulo
 		 */
         $config = $e->getApplication()->getServiceManager()->get('config');
 
-        /*
-		 * arruma a configuração do cakePHP
-		 */
         if (isset($config['caches'][CacheStorageInterface::class]['options']['ttl'])) {
             $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches'][CacheStorageInterface::class]['options']['ttl'];
         }
+
         if (isset($config['db']['adapters'][ZendDbAdapter::class]['host'])) {
             $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][ZendDbAdapter::class]['host'];
         }
+
         if (isset($config['db']['adapters'][ZendDbAdapter::class]['username'])) {
             $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][ZendDbAdapter::class]['username'];
         }
+
         if (isset($config['db']['adapters'][ZendDbAdapter::class]['password'])) {
             $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][ZendDbAdapter::class]['password'];
         }
+
         if (isset($config['db']['adapters'][ZendDbAdapter::class]['dbname'])) {
             $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][ZendDbAdapter::class]['dbname'];
         }
 
         /*
-         * seta o namespace padrão do Cake (App\Model)
+         * Configura o namespace dos models. O padrão é App\Model
          */
         foreach ($config['Cake']['Configure'] as $configKey => $configValue) {
             Configure::write($configKey, $configValue);
         }
 
         /*
-         * configura o cache do Cake
+         * Configura o cache
          */
         foreach ($config['Cake']['Cache'] as $configKey => $configValue) {
             $cacheDir = ROOT_PATH . DIRECTORY_SEPARATOR . $configValue['path'];
@@ -72,7 +73,7 @@ class Module
         }
 
         /*
-         * configura o log do Cake
+         * Configura o log
          */
         foreach ($config['Cake']['Log'] as $configKey => $configValue) {
             $logDir = ROOT_PATH . DIRECTORY_SEPARATOR . $configValue['path'];
@@ -86,7 +87,7 @@ class Module
         }
 
         /*
-         * setup da conexão com banco de dados no Cake
+         * Setup da conexão com banco de dados no Cake
          */
         foreach ($config['Cake']['Datasources'] as $configKey => $configValue) {
             if (!ConnectionManager::getConfig($configKey)) {

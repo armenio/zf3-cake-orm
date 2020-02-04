@@ -2,7 +2,7 @@
 /**
  * Rafael Armenio <rafael.armenio@gmail.com>
  *
- * @link http://github.com/armenio for the source repository
+ * @link http://github.com/armenio
  */
 
 namespace Armenio\Cake\ORM;
@@ -20,7 +20,8 @@ class Table extends CakeORMTable
     /**
      * @param EntityInterface $entity
      * @param array $options
-     * @return mixed
+     * @return EntityInterface|false
+     * @throws \Exception
      */
     public function save(EntityInterface $entity, $options = [])
     {
@@ -45,7 +46,8 @@ class Table extends CakeORMTable
     /**
      * @param EntityInterface $entity
      * @param array $options
-     * @return mixed
+     * @return bool|EntityInterface|false|mixed
+     * @throws \Exception
      */
     public function delete(EntityInterface $entity, $options = [])
     {
@@ -64,11 +66,11 @@ class Table extends CakeORMTable
     /**
      * @param string $type
      * @param array $options
-     * @return mixed
+     * @return Query|\Cake\ORM\Query
      */
     public function find($type = 'all', $options = [])
     {
-        if (!isset($options['conditions'])) {
+        if (empty($options['conditions'])) {
             $options['conditions'] = [];
         }
 
@@ -86,7 +88,7 @@ class Table extends CakeORMTable
     }
 
     /**
-     * @return Query
+     * @return Query|\Cake\ORM\Query
      */
     public function query()
     {

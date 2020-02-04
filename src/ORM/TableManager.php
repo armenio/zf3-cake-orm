@@ -1,8 +1,8 @@
 <?php
 /**
- * Rafael Armenio <rafael.armenio@gmail.com>
+ * @author Rafael Armenio <rafael.armenio@gmail.com>
  *
- * @link http://github.com/armenio for the source repository
+ * @link http://github.com/armenio
  */
 
 namespace Armenio\Cake\ORM;
@@ -18,7 +18,7 @@ class TableManager
     /**
      * @param $alias
      * @param array $options
-     * @return mixed
+     * @return Table|\Cake\ORM\Table
      */
     public function get($alias, array $options = [])
     {

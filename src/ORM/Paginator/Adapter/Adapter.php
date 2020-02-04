@@ -32,7 +32,7 @@ class Adapter implements AdapterInterface
     /**
      * @param int $offset
      * @param int $itemsPerPage
-     * @return mixed
+     * @return Query|array
      */
     public function getItems($offset, $itemsPerPage)
     {
@@ -40,7 +40,7 @@ class Adapter implements AdapterInterface
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function count()
     {
