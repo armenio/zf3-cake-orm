@@ -1,8 +1,9 @@
 <?php
+
 /**
- * Cake Module
- *
  * @author Rafael Armenio <rafael.armenio@gmail.com>
+ *
+ * @link http://github.com/armenio
  */
 
 namespace Armenio\Cake;
@@ -11,12 +12,13 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
-use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
-use Zend\Db\Adapter as ZendDbAdapter;
+use Zend\Cache\Storage\StorageInterface;
+use Zend\Db\Adapter as DbAdapter;
 use Zend\Mvc\MvcEvent;
 
 /**
  * Class Module
+ *
  * @package Armenio\Cake
  */
 class Module
@@ -27,28 +29,28 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         /*
-		 * Configurações do módulo
-		 */
+         * Configurações do módulo
+         */
         $config = $e->getApplication()->getServiceManager()->get('config');
 
-        if (isset($config['caches'][CacheStorageInterface::class]['options']['ttl'])) {
-            $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches'][CacheStorageInterface::class]['options']['ttl'];
+        if (isset($config['caches'][StorageInterface::class]['options']['ttl'])) {
+            $config['Cake']['Cache']['_cake_model_']['duration'] = $config['caches'][StorageInterface::class]['options']['ttl'];
         }
 
-        if (isset($config['db']['adapters'][ZendDbAdapter::class]['host'])) {
-            $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][ZendDbAdapter::class]['host'];
+        if (isset($config['db']['adapters'][DbAdapter::class]['host'])) {
+            $config['Cake']['Datasources']['default']['host'] = $config['db']['adapters'][DbAdapter::class]['host'];
         }
 
-        if (isset($config['db']['adapters'][ZendDbAdapter::class]['username'])) {
-            $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][ZendDbAdapter::class]['username'];
+        if (isset($config['db']['adapters'][DbAdapter::class]['username'])) {
+            $config['Cake']['Datasources']['default']['username'] = $config['db']['adapters'][DbAdapter::class]['username'];
         }
 
-        if (isset($config['db']['adapters'][ZendDbAdapter::class]['password'])) {
-            $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][ZendDbAdapter::class]['password'];
+        if (isset($config['db']['adapters'][DbAdapter::class]['password'])) {
+            $config['Cake']['Datasources']['default']['password'] = $config['db']['adapters'][DbAdapter::class]['password'];
         }
 
-        if (isset($config['db']['adapters'][ZendDbAdapter::class]['dbname'])) {
-            $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][ZendDbAdapter::class]['dbname'];
+        if (isset($config['db']['adapters'][DbAdapter::class]['dbname'])) {
+            $config['Cake']['Datasources']['default']['database'] = $config['db']['adapters'][DbAdapter::class]['dbname'];
         }
 
         /*
@@ -63,11 +65,11 @@ class Module
          */
         foreach ($config['Cake']['Cache'] as $configKey => $configValue) {
             $cacheDir = ROOT_PATH . DIRECTORY_SEPARATOR . $configValue['path'];
-            if (!is_dir($cacheDir)) {
+            if (! is_dir($cacheDir)) {
                 @mkdir($cacheDir, 0755, true);
             }
 
-            if (!Cache::getConfig($configKey)) {
+            if (! Cache::getConfig($configKey)) {
                 Cache::setConfig($configKey, $configValue);
             }
         }
@@ -77,11 +79,11 @@ class Module
          */
         foreach ($config['Cake']['Log'] as $configKey => $configValue) {
             $logDir = ROOT_PATH . DIRECTORY_SEPARATOR . $configValue['path'];
-            if (!is_dir($logDir)) {
+            if (! is_dir($logDir)) {
                 @mkdir($logDir, 0755, true);
             }
 
-            if (!Log::getConfig($configKey)) {
+            if (! Log::getConfig($configKey)) {
                 Log::setConfig($configKey, $configValue);
             }
         }
@@ -90,7 +92,7 @@ class Module
          * Setup da conexão com banco de dados no Cake
          */
         foreach ($config['Cake']['Datasources'] as $configKey => $configValue) {
-            if (!ConnectionManager::getConfig($configKey)) {
+            if (! ConnectionManager::getConfig($configKey)) {
                 ConnectionManager::setConfig($configKey, $configValue);
             }
         }

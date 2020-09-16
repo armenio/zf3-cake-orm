@@ -1,6 +1,6 @@
 {
   "name": "armenio/zf3-cake-orm",
-  "description": "The Cake ORM Module for Zend Framework 3",
+  "description": "Cake ORM Module for Zend Framework",
   "type": "library",
   "keywords": [
     "framework",
@@ -18,14 +18,31 @@
     }
   ],
   "require": {
+    "container-interop/container-interop": "^1.1",
+    "php": "^5.6 || ^7.0",
+    "zendframework/zend-mvc": "^3.0.1",
+    "zendframework/zend-cache": "^2.7.1",
+    "zendframework/zend-db": "^2.8.1",
     "zendframework/zend-paginator": "^2.7",
     "cakephp/orm": "3.*",
     "cakephp/cache": "3.*",
     "cakephp/log": "3.*"
   },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.5.3"
+  },
   "autoload": {
     "psr-4": {
       "Armenio\\Cake\\": "src/"
+    }
+  },
+  "scripts": {
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf"
+  },
+  "config": {
+    "platform": {
+      "php": "7.1"
     }
   }
 }

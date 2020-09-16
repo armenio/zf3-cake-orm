@@ -1,5 +1,5 @@
 # zf3-cake-orm
-The Cake ORM Module for Zend Framework 3
+Cake ORM Module for Zend Framework
 
 ## How to install
 
@@ -23,7 +23,7 @@ The Cake ORM Module for Zend Framework 3
 ```php
 'modules' => array(
 	 'Application',
-	 'Cake', //<==============================
+	 'Cake', // <==============================
 )
 ```
 
@@ -33,7 +33,7 @@ The Cake ORM Module for Zend Framework 3
 	'Cake' => array(
 		'Configure' => array(
 			'App' => array(
-				'namespace' => 'Application' //<======= put your App/Module namespace HERE!
+				'namespace' => 'Application' // <======= put your App/Module namespace HERE!
 			),
 		),
 	),
@@ -70,7 +70,7 @@ See more here: http://book.cakephp.org/3.0/en/orm.html
 <?php
 use Armenio\Cake\ORM\TableManager;
 
-$tableManager = new TableManager()
+$tableManager = new TableManager();
 
 $table = $tableManager->get('MyTable');
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Rafael Armenio <rafael.armenio@gmail.com>
  *
@@ -7,8 +8,8 @@
 
 namespace Armenio\Cake;
 
-//use Zend\Cache\Storage\StorageInterface as CacheStorageInterface;
-//use Zend\Db\Adapter as ZendDbAdapter;
+// use Zend\Cache\Storage\StorageInterface;
+// use Zend\Db\Adapter as DbAdapter;
 
 return [
     'Cake' => [
@@ -66,38 +67,37 @@ return [
             ORM\TableManager::class => ORM\TableManagerServiceFactory::class,
         ],
     ],
-    /*
-     * Remover este comentário caso não tenha o zf cache configurado em outro módulo
-     *
-    'caches' => array(
-        CacheStorageInterface::class => array(
-            'adapter' => array(
-                'name' => 'filesystem',
-            ),
-            'options' => array(
-                'cache_dir' => 'data/cache/',
-                'ttl' => 31557600,
-            ),
-            'plugins' => array(
-                'Serializer',
-            ),
-        ),
-    ),
-    */
 
     /*
-     * Remover este comentário caso não tenha o zf db configurado em outro módulo
+     * Exemplo de configuração do cache
      *
-    'db' => array(
-        'adapters' => array(
-            ZendDbAdapter::class => array(
+    'caches' => [
+        StorageInterface::class => [
+            'adapter' => [
+                'name' => 'filesystem',
+            ],
+            'options' => [
+                'cache_dir' => 'data/cache/',
+                'ttl' => 31557600,
+            ],
+            'plugins' => [
+                'Serializer',
+            ],
+        ],
+    ],*/
+
+    /*
+     * Exemplo de configuração do DB
+     *
+    'db' => [
+        'adapters' => [
+            DbAdapter::class => [
                 'driver' => 'Pdo_Mysql',
                 'host' => 'localhost',
                 'username' => 'username',
                 'password' => '',
                 'dbname' => 'dbname',
-            ),
-        ),
-    ),
-    */
+            ],
+        ],
+    ],*/
 ];

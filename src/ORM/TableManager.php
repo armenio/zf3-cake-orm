@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Rafael Armenio <rafael.armenio@gmail.com>
  *
@@ -11,6 +12,7 @@ use Cake\ORM\TableRegistry;
 
 /**
  * Class TableManager
+ *
  * @package Armenio\Cake\ORM
  */
 class TableManager
@@ -18,7 +20,8 @@ class TableManager
     /**
      * @param $alias
      * @param array $options
-     * @return Table|\Cake\ORM\Table
+     *
+     * @return Table
      */
     public function get($alias, array $options = [])
     {

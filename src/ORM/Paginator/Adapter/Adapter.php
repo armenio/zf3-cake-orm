@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * @author Rafael Armenio <rafael.armenio@gmail.com>
+ *
+ * @link http://github.com/armenio
+ */
+
 namespace Armenio\Cake\ORM\Paginator\Adapter;
 
 use Armenio\Cake\ORM\Query;
@@ -6,6 +13,7 @@ use Zend\Paginator\Adapter\AdapterInterface;
 
 /**
  * Class Adapter
+ *
  * @package Armenio\Cake\ORM\Paginator\Adapter
  */
 class Adapter implements AdapterInterface
@@ -22,6 +30,7 @@ class Adapter implements AdapterInterface
 
     /**
      * Adapter constructor.
+     *
      * @param Query $query
      */
     public function __construct(Query $query)
@@ -32,6 +41,7 @@ class Adapter implements AdapterInterface
     /**
      * @param int $offset
      * @param int $itemsPerPage
+     *
      * @return Query|array
      */
     public function getItems($offset, $itemsPerPage)
