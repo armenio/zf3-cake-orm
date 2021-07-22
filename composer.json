@@ -26,7 +26,8 @@
     "zendframework/zend-paginator": "^2.7",
     "cakephp/orm": "3.*",
     "cakephp/cache": "3.*",
-    "cakephp/log": "3.*"
+    "cakephp/log": "3.*",
+    "jeremyharris/cakephp-lazyload": "2.*"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.5.3"
